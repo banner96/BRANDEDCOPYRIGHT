@@ -1,0 +1,5 @@
+build:
+  docker:
+    worker: Dockerfile
+run:
+  brandedking: python3 -m BRANDEDCOPYRIGHT
