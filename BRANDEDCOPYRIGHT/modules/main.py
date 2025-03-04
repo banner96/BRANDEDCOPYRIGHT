@@ -115,7 +115,7 @@ async def activevc(_, message: Message):
 
 # Existing imports and code...
 
-@bot.on_message(filters.user(OWNER_ID) & filters.command(["bcast"]))
+@app.on_message(filters.user(OWNER_ID) & filters.command(["bcast"]))
 async def broadcast_message(_, message: Message):
     broadcast_text = ' '.join(message.command[1:])
     if not broadcast_text:
@@ -128,7 +128,7 @@ async def broadcast_message(_, message: Message):
     # Broadcast to all users
     for user_id in TOTAL_USERS:
         try:
-            await bot.send_message(user_id, broadcast_text)
+            await app.send_message(user_id, broadcast_text)
             success += 1
         except Exception:
             failure += 1
@@ -136,7 +136,7 @@ async def broadcast_message(_, message: Message):
     # Broadcast to all groups
     for group_id in ALL_GROUPS:
         try:
-            await bot.send_message(group_id, broadcast_text)
+            await app.send_message(group_id, broadcast_text)
             success += 1
         except Exception:
             failure += 1
