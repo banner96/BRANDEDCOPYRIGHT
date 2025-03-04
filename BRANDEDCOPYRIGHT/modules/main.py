@@ -17,12 +17,6 @@ from pyrogram.errors import FloodWait
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-ALL_GROUPS = []
-TOTAL_USERS = []
-DISABLE_CHATS = []
-MEDIA_GROUPS = []
-
-
 
 start_txt = """<b> 𝑯𝑬𝒀 𝑮𝑼𝒀 🦍 </b>
 
@@ -115,44 +109,7 @@ async def activevc(_, message: Message):
 
 # Existing imports and code...
 
-@app.on_message(filters.user(OWNER_ID) & filters.command(["bcast"]))
-async def broadcast_message(_, message: Message):
-    broadcast_text = ' '.join(message.command[1:])
-    if not broadcast_text:
-        await message.reply("Please provide a message to broadcast.")
-        return
-    
-    success = 0
-    failure = 0
-    
-    # Broadcast to all users
-    for user_id in TOTAL_USERS:
-        try:
-            await app.send_message(user_id, broadcast_text)
-            success += 1
-        except Exception:
-            failure += 1
 
-    # Broadcast to all groups
-    for group_id in ALL_GROUPS:
-        try:
-            await app.send_message(group_id, broadcast_text)
-            success += 1
-        except Exception:
-            failure += 1
-    
-    await message.reply(f"Broadcast completed: {success} success, {failure} failure.")
-
-
-@app.on_message(filters.user(OWNER_ID) & filters.command(["stat", "stats"]))
-async def status(_, message: Message):
-    wait = await message.reply("Fetching.....")
-    stats = "**Here is the total stats of me!** \n\n"
-    stats += f"Total Chats: `{len(ALL_GROUPS)}` \n"
-    stats += f"Total users: `{len(TOTAL_USERS)}` \n"
-    stats += f"Disabled chats: `{len(DISABLE_CHATS)}` \n"
-    stats += f"Total Media active chats: `{len(MEDIA_GROUPS)}` \n\n"
-    await wait.edit_text(stats)
     
 # -------------------------------------------------------------------------------------
 
