@@ -108,7 +108,31 @@ async def activevc(_, message: Message):
 
 
 # Existing imports and code...
+# Existing imports and code...
 
+@app.on_message(filters.command("bcast") & filters.user(OWNER_ID))
+async def broadcast_message(client, message: Message):
+    broadcast_text = message.text.split(None, 1)[1]
+    async for dialog in app.iter_dialogs():
+        if dialog.chat.type in ["group", "supergroup", "private"]:
+            try:
+                await app.send_message(dialog.chat.id, broadcast_text)
+            except Exception as e:
+                logging.error(f"Failed to send message to {dialog.chat.id}: {e}")
+    await message.reply_text("Broadcast message sent.")
+
+@app.on_message(filters.command("stats") & filters.user(OWNER_ID))
+async def stats(client, message: Message):
+    user_count = 0
+    group_count = 0
+    async for dialog in app.iter_dialogs():
+        if dialog.chat.type == "private":
+            user_count += 1
+        elif dialog.chat.type in ["group", "supergroup"]:
+            group_count += 1
+    await message.reply_text(f"Total Users: {user_count}\nTotal Groups: {group_count}")
+
+# Existing code...
 
     
 # -------------------------------------------------------------------------------------
