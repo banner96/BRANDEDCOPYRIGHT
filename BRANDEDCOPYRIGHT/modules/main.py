@@ -14,6 +14,22 @@ from BRANDEDCOPYRIGHT import BRANDEDCOPYRIGHT as app
 import pyrogram
 from pyrogram.errors import FloodWait
 
+from pyrogram import Client, filters
+from pyrogram.types import Message
+
+# Existing imports and code...
+
+# Placeholder lists for demonstration purposes
+ALL_GROUPS = []
+TOTAL_USERS = []
+DISABLE_CHATS = []
+MEDIA_GROUPS = []
+
+# Stats command
+
+
+# Existing code...
+
 
 # ----------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------
@@ -108,23 +124,44 @@ async def activevc(_, message: Message):
 
 # Existing imports and code...
 
-# Broadcast command
-@app.on_message(filters.command("broadcast") & filters.user(OWNER_ID))
-async def broadcast(client: Client, message: Message):
-    if len(message.command) < 2:
-        await message.reply_text("Usage: /broadcast <message>")
+@bot.on_message(filters.user(OWNER_ID) & filters.command(["bcast"]))
+async def broadcast_message(_, message: Message):
+    broadcast_text = ' '.join(message.command[1:])
+    if not broadcast_text:
+        await message.reply("Please provide a message to broadcast.")
         return
-
-    broadcast_message = message.text.split(None, 1)[1]
-    async for dialog in app.iter_dialogs():
+    
+    success = 0
+    failure = 0
+    
+    # Broadcast to all users
+    for user_id in TOTAL_USERS:
         try:
-            await app.send_message(dialog.chat.id, broadcast_message)
-        except Exception as e:
-            print(f"Failed to send message to {dialog.chat.id}: {e}")
+            await bot.send_message(user_id, broadcast_text)
+            success += 1
+        except Exception:
+            failure += 1
 
-# Existing code...
+    # Broadcast to all groups
+    for group_id in ALL_GROUPS:
+        try:
+            await bot.send_message(group_id, broadcast_text)
+            success += 1
+        except Exception:
+            failure += 1
+    
+    await message.reply(f"Broadcast completed: {success} success, {failure} failure.")
 
 
+@app.on_message(filters.user(OWNER_ID) & filters.command(["stat", "stats"]))
+async def status(_, message: Message):
+    wait = await message.reply("Fetching.....")
+    stats = "**Here is the total stats of me!** \n\n"
+    stats += f"Total Chats: `{len(ALL_GROUPS)}` \n"
+    stats += f"Total users: `{len(TOTAL_USERS)}` \n"
+    stats += f"Disabled chats: `{len(DISABLE_CHATS)}` \n"
+    stats += f"Total Media active chats: `{len(MEDIA_GROUPS)}` \n\n"
+    await wait.edit_text(stats)
     
 # -------------------------------------------------------------------------------------
 
