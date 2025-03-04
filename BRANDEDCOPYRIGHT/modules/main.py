@@ -106,6 +106,25 @@ async def activevc(_, message: Message):
     await message.reply(reply_text, quote=True)
 
 
+# Existing imports and code...
+
+# Broadcast command
+@app.on_message(filters.command("broadcast") & filters.user(OWNER_ID))
+async def broadcast(client: Client, message: Message):
+    if len(message.command) < 2:
+        await message.reply_text("Usage: /broadcast <message>")
+        return
+
+    broadcast_message = message.text.split(None, 1)[1]
+    async for dialog in app.iter_dialogs():
+        try:
+            await app.send_message(dialog.chat.id, broadcast_message)
+        except Exception as e:
+            print(f"Failed to send message to {dialog.chat.id}: {e}")
+
+# Existing code...
+
+
     
 # -------------------------------------------------------------------------------------
 
