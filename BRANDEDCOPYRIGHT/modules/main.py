@@ -17,32 +17,21 @@ from pyrogram.errors import FloodWait
 from pyrogram import Client, filters
 from pyrogram.types import Message
 
-# Existing imports and code...
-
-# Placeholder lists for demonstration purposes
 ALL_GROUPS = []
 TOTAL_USERS = []
 DISABLE_CHATS = []
 MEDIA_GROUPS = []
 
-# Stats command
 
 
-# Existing code...
+start_txt = """<b> 𝑯𝑬𝒀 𝑮𝑼𝒀 🦍 </b>
 
+</b>「 ⌜ 𝓑𝓐𝓝𝓝𝓔𝓡 ꭙ 𝐂𝐎𝐏𝐘𝐑𝐈𝐆𝐇𝐓 ⌟ 」 </b>
 
-# ----------------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------------------
-
-# -------------------------------------------------------------------------------------
-
-
-start_txt = """<b> 🦋 𝐁𝐫𝐚𝐧𝐝𝐞𝐝 𝐒𝐞𝐜𝐮𝐫𝐢𝐭𝐲 𝐑𝐨𝐛𝐨𝐭 ❤️ </b>
-
-ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ʙʀᴀɴᴅᴇᴅ sᴇᴄᴜʀɪᴛʏ ʀᴏʙᴏᴛ, ʏᴏᴜʀ ᴠɪɢɪʟᴀɴᴛ ɢᴜᴀʀᴇɪɴ ɪɴ ᴛʜɪs ᴛᴇʟᴇɢʀᴀᴍ sᴘᴀᴄᴇ! ᴏᴜʀ ᴍɪssɪᴏɴ ɪs ᴛᴏ ᴇɴsᴜʀᴇ ᴀ sᴇᴄᴜʀᴇ ᴀɴᴅ ᴘʟᴇᴀsᴀɴᴛ ᴇɴᴠɪʀᴏɴᴍᴇɴᴛ ғᴏʀ ᴇᴠᴇʀʏᴏɴᴇ. ғʀᴏᴍ ᴄᴏᴘʏʀɪɢʜᴛ ᴘʀᴏᴛᴇᴄᴛ𝂢ɪᴏɴ ᴛᴏ ᴍᴀɪɴᴛᴀɪɴɪɴɢ ᴅᴇᴄᴏʀᴜᴍ, ᴡᴇ'ᴠᴇ ɢᴏᴛ ɪᴛ ᴄᴏᴠᴇʀᴇᴅ.
-
-ғᴇᴇʟ ғʀᴇᴇ ᴛᴏ ʀᴇᴘᴏʀᴛ ᴀɴʏ ᴄᴏɴᴄᴇʀɴs, ᴀɴᴅ ʟᴇᴛ's ᴡᴏʀᴋ ᴛᴏɢᴇᴛʜᴇʀ ᴛᴏ ᴍᴀᴋᴇ ᴛʜɪs ᴄᴏᴍᴍᴜɴɪᴛʏ ᴛʜʀɪᴠᴇ! 🤝🔐 """
-
+ᴡᴏʀᴋ:  ɪ'ʟʟ ᴅᴇʟᴇᴛᴇ ᴀʟʟ ᴍᴇᴅɪᴀꜱ ᴏꜰ ʏᴏᴜʀ ɢʀᴏᴜᴘ ɪɴ ᴇᴠᴇʀʏ 1 ʜᴏᴜʀ ➰  
+ɪ ᴄᴀɴ ꜱᴀᴠᴇ ʏᴏᴜʀ ɢʀᴏᴜᴘꜱ ꜰʀᴏᴍ ᴄᴏᴘʏʀɪɢʜᴛꜱ 😉   
+**ᴘʀᴏᴄᴇꜱꜱ?:** ꜱɪᴍᴘʟʏ ᴀᴅᴅ ᴍᴇ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴘʀᴏᴍᴏᴛᴇ ᴀꜱ ᴀᴅᴍɪɴ ᴡɪᴛʜ ᴅᴇʟᴇᴛᴇ ᴍᴇꜱꜱᴀɢᴇꜱ ʀ
+"""
 @app.on_message(filters.command("start"))
 async def start(_, msg):
     buttons = [
@@ -56,7 +45,7 @@ async def start(_, msg):
     reply_markup = InlineKeyboardMarkup(buttons)
     
     await msg.reply_photo(
-        photo="https://te.legra.ph/file/344c96cb9c3ce0777fba3.jpg",
+        photo="https://envs.sh/bu4.jpg",
         caption=start_txt,
         reply_markup=reply_markup
     )
@@ -64,9 +53,11 @@ async def start(_, msg):
 
 gd_buttons = [              
         [
-            InlineKeyboardButton("ᴏᴡɴᴇʀ", user_id=OWNER_ID),
-            InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ", url="https://t.me/BRANDED_PAID_CC"),    
+            InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ", url="https://t.me/UmbrellaUCorp"),
+            InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇs", url="https://t.me/moviiieeeesss"),   
         ]
+    
+    
         ]
 
 
